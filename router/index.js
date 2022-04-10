@@ -8,6 +8,6 @@ router.get('/', Home)
 //create
 router.get('/add',getAdd)
 
-router.post('/add/post',postAdd)
+router.post('/add',postAdd)
 
 module.exports = router

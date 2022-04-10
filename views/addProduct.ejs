@@ -47,7 +47,7 @@
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Edit a product</h1>
+                    <h1 class="display-4 fw-bolder">Add a product</h1>
                 </div>
             </div>
         </header>
@@ -56,7 +56,7 @@
             <div class="row">
               <!-- Blog entries-->
               <!-- Nested row for non-featured blog posts-->
-              <form action="/add/post" method="post">
+              <form action="/add" method="post">
                 <div class="row">
                   <div class="col mb-2">
                     <label for="product_name">Product</label>
@@ -67,7 +67,16 @@
                     <input id="price" type="number" name="price" class="form-control" value="" aria-label="price" required>
                   </div>
                 </div>
-                
+                <div class="row">
+                    <div class="col mb-2">
+                      <label for="in_stock">Stock</label>
+                      <input id="in_stock" type="number" name="in_stock" class="form-control" value="" aria-label="product-stock" required>
+                    </div>
+                    <div class="col mb-2">
+                      <label for="sold">Items Sold</label>
+                      <input id="sold" type="number" name="sold" class="form-control" value="0" aria-label="sold" required>
+                    </div>
+                  </div>
                 <div id="description" class="col mb-2">
                     <label for="description">Description</label>
                     <textarea name="description" class="form-control" required></textarea>
