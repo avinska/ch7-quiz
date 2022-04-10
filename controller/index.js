@@ -1,5 +1,4 @@
 const { Product, Stock } = require('../models')
-const {randomBytes}=require("crypto")
 
 //route to home page
 const Home = async (req, res) => {
