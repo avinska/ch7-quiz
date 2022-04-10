@@ -20,13 +20,17 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container px-4 px-lg-5">
             <a class="navbar-brand" href="#!">Start Bootstrap</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/add">Add-Product</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#!">All Products</a></li>
                             <li>
@@ -48,36 +52,82 @@
         </div>
     </nav>
     <!-- Product section-->
-    <section class="py-5">
-        <div class="container px-4 px-lg-5 my-5">
-            <div class="row gx-4 gx-lg-5 align-items-center">
-                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
-                <div class="col-md-6">
-                    <h1 class="display-5 fw-bolder">Shop item template</h1>
-                    <div class="fs-5 mb-5">
-                        <div class="d-flex my-0">
-                            <p class="small text-muted">sold: <span class="">12</span>   •</p>
-                            <p class="small text-muted ms-3">item left: <span class="">3</span></p>
+    <thead>
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0"
+                            src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
+                    <div class="col-md-6">
+                        <h1 class="display-5 fw-bolder">Shop item template</h1>
+                        <div class="fs-5 mb-5">
+                            <div class="d-flex my-0">
+                                <p class="small text-muted">sold: <span class="">12</span> •</p>
+                                <p class="small text-muted ms-3">item left: <span class="">3</span></p>
+                            </div>
+                            <span>$40.00</span>
                         </div>
-                        <span>$40.00</span>
-                    </div>
-                    <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
-                    <div class="d-flex">
-                        <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                            <i class="bi bi-pencil me-1"></i>
-                            Edit
-                        </button>
-                        <form action="/delete/<%= data.uuid %> " method="post">
-                            <button type="submit" class="ms-2 btn btn-outline-danger flex-shrink-0">
-                                <i class="bi bi-trash-fill me-1"></i>
-                                Delete
+                        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem
+                            quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius
+                            blanditiis delectus ipsam minima ea iste laborum vero?</p>
+                        <div class="d-flex">
+                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                                <i class="bi bi-pencil me-1"></i>
+                                Edit
                             </button>
-                        </form>
+                            <form action="/delete/<%= data.uuid %> " method="post">
+                                <button type="submit" class="ms-2 btn btn-outline-danger flex-shrink-0">
+                                    <i class="bi bi-trash-fill me-1"></i>
+                                    Delete
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </thead>
+
+    <tbody>
+        <% data.forEach(productDetails => { %>
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="<%= productDetails.img_url  %>"
+                            alt="..." /></div>
+                    <div class="col-md-6">
+                        <h1 class="display-5 fw-bolder"><%= productDetails.product_name  %></h1>
+                        <div class="fs-5 mb-5">
+                            <div class="d-flex my-0">
+                                <p class="small text-muted">sold: <span
+                                        class=""><%= productDetails.stock.sold  %></span>
+                                </p>
+                                <p class="small text-muted ms-3">item left: <span
+                                        class=""><%= productDetails.stock.in_stock  %></span></p>
+                            </div>
+                            <span><%= productDetails.price  %></span>
+                        </div>
+                        <p class="lead"><%= productDetails.description  %></p>
+                        <div class="d-flex">
+                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                                <i class="bi bi-pencil me-1"></i>
+                                Edit
+                            </button>
+                            <form action="/delete/<%= data.uuid %> " method="post">
+                                <button type="submit" class="ms-2 btn btn-outline-danger flex-shrink-0">
+                                    <i class="bi bi-trash-fill me-1"></i>
+                                    Delete
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <% }) %>
+    </tbody>
+
     <!-- Footer-->
     <footer class="py-5 bg-dark">
         <div class="container">
