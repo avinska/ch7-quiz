@@ -9,24 +9,38 @@ const Home = async (req, res) => {
 }
 
 //route create
-const getAdd =(_,res)=>{
+const getAdd = (_, res) => {
     res.render('addProduct')
 }
-const postAdd=async(req,res)=>{
-    const product= await Product.create({
-        product_name:req.body.product_name,
-        description : req.body.description,
-        price:req.body.price,
+const postAdd = async (req, res) => {
+    const product = await Product.create({
+        product_name: req.body.product_name,
+        description: req.body.description,
+        price: req.body.price,
         img_url: req.body.img_url,
     });
     await Stock.create({
-        sold:req.body.sold,
-        in_stock:req.body.in_stock,
-        product_id:product.uuid
+        sold: req.body.sold,
+        in_stock: req.body.in_stock,
+        product_id: product.uuid
     })
     res.redirect('/')
 }
 
+// route delete
+const Delete = async (req, res) => {
+    await Product.destroy({
+        where: {
+            uuid: req.params.id
+        }
+    });
+    await Stock.destroy({
+        where: {
+            product_id: req.params.id
+        }
+    });
+}
+
 module.exports = {
-    Home,getAdd,postAdd
+    Home, getAdd, postAdd, Delete
 }
