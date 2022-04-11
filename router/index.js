@@ -1,13 +1,16 @@
-const express = require('express')
-router = express.Router()
-const { Home, getAdd, postAdd } = require('../controller')
+const express = require("express");
+router = express.Router();
+const { Home, getAdd, postAdd, editProduct, updateProduct } = require("../controller");
 
 //homepage
-router.get('/', Home)
+router.get("/", Home);
 
 //create
-router.get('/add',getAdd)
+router.get("/add", getAdd);
 
-router.post('/add',postAdd)
+router.post("/add", postAdd);
 
-module.exports = router
+// update
+router.get("/product/edit/:uuid", editProduct);
+router.post("/product/update", updateProduct);
+module.exports = router;
