@@ -34,11 +34,6 @@ const Delete = async (req, res) => {
             uuid: req.params.id
         }
     });
-    await Stock.destroy({
-        where: {
-            product_id: req.params.id
-        }
-    });
 }
 
 module.exports = {
