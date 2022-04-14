@@ -12,5 +12,6 @@ router.post("/add", postAdd);
 
 // update
 router.get("/product/edit/:uuid", editProduct);
-router.post("/product/update", updateProduct);
+
+router.post("/product/edit/:uuid", updateProduct);
 module.exports = router;

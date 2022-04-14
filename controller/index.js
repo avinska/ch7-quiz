@@ -29,50 +29,57 @@ const postAdd = async (req, res) => {
 
 // Update
 const editProduct = async (req, res) => {
-  const productList = await Product.findByPk(req.params.uuid, {
-    include: [
-      {
-        model: Stock,
-        as: "Stock",
-      },
-    ],
-  });
-
-  res.render("editProduct", {
-    product: productList,
-  });
+  try {
+    const productList = await Product.findByPk(req.params.uuid, {
+      include: [
+        {
+          model: Stock,
+          as: "Stock",
+        },
+      ],
+    });
+    res.render("editProduct", {
+      product: productList,
+    });
+  } catch (err) {
+    res.send("Data Tidak Di Temukan");
+  }
   // res.json(productList);
 };
 
 const updateProduct = async (req, res) => {
-  const product = await Product.update(
-    {
-      product_name: req.body.product_name,
-      price: req.body.price,
-      description: req.body.description,
-      img_url: req.body.img_url,
-    },
-    {
-      where: {
-        uuid: req.body.uuid,
+  try {
+    const product = await Product.update(
+      {
+        product_name: req.body.product_name,
+        price: req.body.price,
+        description: req.body.descript,
+        img_url: req.body.imgproduct,
       },
-    }
-  ).catch((error) => {
-    res.status(400).send(error);
-  });
-  await Stock.update(
-    {
-      sold: req.body.sold,
-      in_stock: req.body.in_stock,
-    },
-    {
-      where: {
-        product_id: req.body.uuid,
+      {
+        where: {
+          uuid: req.params.uuid,
+        },
+      }
+    );
+  } catch (err) {
+    res.send("Data Produk Gagal Masuk");
+  }
+  try {
+    await Stock.update(
+      {
+        sold: req.body.sold,
+        in_stock: req.body.in_stock,
       },
-    }
-  ).catch((error) => {
-    res.status(400).send(error);
-  });
+      {
+        where: {
+          product_id: req.params.uuid,
+        },
+      }
+    );
+  } catch (err) {
+    res.send("Data Stok Gagal Masuk");
+  }
   res.redirect("/");
 };
 module.exports = {
