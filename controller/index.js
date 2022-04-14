@@ -30,22 +30,9 @@ const postAdd = async (req, res) => {
     res.redirect('/')
 }
 
-const findProduct = async (req, res) => {
-    const productList = await Product.findOne({
-        where: {
-            id: req.params.uuid
-        },
-        include: ['stock']
-    })
-    res.render('productDetails', {
-        data: productList
-    })
-}
-
 module.exports = {
     Home,
     getAdd,
-    postAdd,
-    findProduct
+    postAdd
 
 }
