@@ -62,10 +62,6 @@ const updateProduct = async (req, res) => {
         },
       }
     );
-  } catch (err) {
-    res.send("Data Produk Gagal Masuk");
-  }
-  try {
     await Stock.update(
       {
         sold: req.body.sold,
@@ -78,9 +74,10 @@ const updateProduct = async (req, res) => {
       }
     );
   } catch (err) {
-    res.send("Data Stok Gagal Masuk");
+    res.send("Data Produk Gagal Masuk");
   }
-  res.redirect("/");
+  
+  res.redirect(`/details/${req.params.id}`)
 };
 module.exports = {
   Home,
