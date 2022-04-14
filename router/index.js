@@ -1,6 +1,8 @@
 const express = require('express')
 router = express.Router()
+
 const { Home, getAdd, postAdd, Delete } = require('../controller')
+
 
 //homepage
 router.get('/', Home)
