@@ -30,9 +30,15 @@ const postAdd = async (req, res) => {
     res.redirect('/')
 }
 
-module.exports = {
-    Home,
-    getAdd,
-    postAdd
+// route delete
+const Delete = async (req, res) => {
+    await Product.destroy({
+        where: {
+            uuid: req.params.id
+        }
+    });
+}
 
+module.exports = {
+    Home, getAdd, postAdd, Delete
 }
