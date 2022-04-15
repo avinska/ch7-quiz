@@ -1,17 +1,23 @@
 const express = require("express");
 router = express.Router();
-const { Home, getAdd, postAdd, editProduct, updateProduct } = require("../controller");
+const { Home, getAdd, postAdd, editProduct, updateProduct, Delete } = require("../controller");
 
-//homepage
+//route to homepage
 router.get("/", Home);
 
-//create
+//route to create new data page
 router.get("/add", getAdd);
 
+//route to post new data
 router.post("/add", postAdd);
 
-// update
+// route to edit data page
 router.get("/product/edit/:uuid", editProduct);
 
+//route to update page
 router.post("/product/edit/:uuid", updateProduct);
+
+//route to delete data
+router.delete('/delete/:id', Delete);
+
 module.exports = router;
