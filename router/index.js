@@ -1,6 +1,6 @@
 const express = require("express");
 router = express.Router();
-const { Home, getAdd, postAdd, editProduct, updateProduct, Delete } = require("../controller");
+const { Home, getAdd, postAdd, productDetails, editProduct, updateProduct, Delete } = require("../controller");
 
 //route to homepage
 router.get("/", Home);
@@ -10,6 +10,9 @@ router.get("/add", getAdd);
 
 //route to post new data
 router.post("/add", postAdd);
+
+// route to product details page
+router.get("/product/details/:id", productDetails);
 
 // route to edit data page
 router.get("/product/edit/:uuid", editProduct);

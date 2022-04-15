@@ -32,6 +32,20 @@ const postAdd = async (req, res) => {
     res.redirect('/')
 }
 
+//route to product details 
+const productDetails = async (req, res) => {
+    const foundProduct = await Product.findByPk(req.params.id, {
+        include: 'stock'
+    }).then(data => {
+        res.render('productDetails', { data })
+    }).catch(err => {
+        console.log("===========================")
+        console.log(err)
+        console.log("===========================")
+    })
+}
+
+
 //route to edit page
 const editProduct = async (req, res) => {
     try {
@@ -95,5 +109,5 @@ const Delete = async (req, res) => {
 }
 
 module.exports = {
-    Home, getAdd, postAdd, editProduct, updateProduct, Delete, 
+    Home, getAdd, postAdd, productDetails, editProduct, updateProduct, Delete, 
 }
