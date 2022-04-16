@@ -26,7 +26,11 @@
             </div>
         </header>
         <!-- Section-->
-        <%- include('./partials/card') %> 
+        <div class="row">
+            <% data.forEach(data => {
+                <%- include('./partials/card', {data}) %>
+            <% }) %> 
+        </div> 
         <!-- Footer-->
         <%- include('./partials/footer') %> 
         <!-- Bootstrap core JS-->
